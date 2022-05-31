@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include moldex3d_integration *.css
+recursive-include moldex3d_integration *.csv
+recursive-include moldex3d_integration *.html
+recursive-include moldex3d_integration *.ico
+recursive-include moldex3d_integration *.js
+recursive-include moldex3d_integration *.json
+recursive-include moldex3d_integration *.md
+recursive-include moldex3d_integration *.png
+recursive-include moldex3d_integration *.py
+recursive-include moldex3d_integration *.svg
+recursive-include moldex3d_integration *.txt
+recursive-exclude moldex3d_integration *.pyc

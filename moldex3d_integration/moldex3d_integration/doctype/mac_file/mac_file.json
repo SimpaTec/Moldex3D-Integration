@@ -266,12 +266,6 @@
    "options": "Moldex Detail"
   },
   {
-   "default": "0",
-   "fieldname": "check",
-   "fieldtype": "Check",
-   "label": "check"
-  },
-  {
    "fieldname": "simpatec_kunde",
    "fieldtype": "Link",
    "label": "SimpaTec Kunde",
@@ -280,7 +274,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-06-30 12:16:29.017229",
+ "modified": "2022-07-01 12:16:29.017229",
  "modified_by": "Administrator",
  "module": "Moldex3D Integration",
  "name": "MAC File",

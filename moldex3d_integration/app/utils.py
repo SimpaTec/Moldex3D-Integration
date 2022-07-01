@@ -1,5 +1,7 @@
 
 from __future__ import unicode_literals
+from datetime import date
+from operator import le
 import frappe
 from frappe import _
 import io
@@ -9,6 +11,7 @@ import six
 from six import StringIO, text_type, string_types
 from frappe.utils import encode, cstr, cint, flt
 from frappe.core.doctype.file.file import create_new_folder
+from frappe.utils import get_datetime
 #from .attach_csv import execute
 
 
@@ -22,14 +25,21 @@ def process_mac_csv(doctype,docname,data_file):
 		}
     mac_moldex_table = {
     }
+    #'date':'Date',
     title_mac ={
         'title':'Title' ,
         'version':'Version' ,
+        'software':'Software',
+        'copyright':'Copyright(c)',
+        'tel':'TEL',
+        'fax':'FAX',
+        'website':'Website',
+        'email':'Email',
         'customer_id':'Customer ID' ,
         'customer':'Customer',
         'customer_class':'Customer Class',
         'license_mode':'License Mode',
-        'publishing_date':'Publishing Date',
+        'publishing_date':'Publishing Date',        
         'machine_id':'Machine ID',        
     }
     version_mac = {
@@ -42,13 +52,10 @@ def process_mac_csv(doctype,docname,data_file):
     moldex3d_end_index = 0 #[Moldex3D Mesh]
 
     writer = UnicodeWriter()
-    #file = open("bizerp.dev/public"+data_file)
+    
     file_path = frappe.utils.get_site_name(frappe.local.site) + \
             '/public'+data_file
-    #print(f'\n\n\n\n path : {file_path} \n\n \n\n')
-    #file = open("bizerp.dev/public/files/62270_Alfred_20230523a1fdec.mac")
-    #file = open("bizerp.dev"+data_file)   
-    # 'bizerp.dev/files/84934922d5.csv' 
+
     file = open(file_path)
     csvreader = csv.reader(file)
 
@@ -63,6 +70,9 @@ def process_mac_csv(doctype,docname,data_file):
      """
 
     moldex_mac = frappe.get_doc(doctype, docname) 
+    """ elif v == "Date":
+                    spa = t[0].split(":")[-1]
+                    mac_title[k] = get_datetime(spa) """
 
     for k,v in title_mac.items():
         for t in title:
@@ -70,6 +80,7 @@ def process_mac_csv(doctype,docname,data_file):
                 if not v == "Machine ID":
                     spa = t[0].split(":")[-1]
                     mac_title[k] = spa
+                
                 elif v == "Machine ID":
                     dspa = t[0].split(":")[-1]
                     spa = dspa.split(" ")
@@ -87,24 +98,47 @@ def process_mac_csv(doctype,docname,data_file):
                 break
     #print(f'\n\n\n\n {mac_title} \n\n')  
 
-    moldex3d_start_index = moldex_index(title,"[Moldex3D]") + 1
+    moldex3d_start_index = moldex_index(title,"[Moldex3D]") 
     moldex3d_end_index = moldex_index(title,"[Moldex3D Mesh]") - 3
-    mod3x_detail = get_moldex3d_list(title,moldex3d_start_index,moldex3d_end_index)    
+    moldex3d_mesh_start = moldex_index(title,"[Moldex3D Mesh]") 
+    moldex3d_caddoctor_start = moldex_index(title,"[Moldex3D CADdoctor]") 
+    moldex3d_tools_start = moldex_index(title,"[Moldex3D Tools]") 
+    moldex3d_end_line = len(title)
+
+    mod3x_detail = get_moldex3d_list(title,moldex3d_start_index+1,moldex3d_mesh_start-3 if moldex3d_mesh_start > 0 else moldex3d_end_line -2)    
+    moldex3d_mesh = get_moldex3d_list(title,moldex3d_mesh_start+1 if moldex3d_mesh_start > 0 else moldex3d_end_line,moldex3d_caddoctor_start-3 if moldex3d_caddoctor_start > 0 else moldex3d_end_line -2)
+    moldex3d_caddoctor = get_moldex3d_list(title,moldex3d_caddoctor_start+1  if moldex3d_caddoctor_start > 0 else moldex3d_end_line,moldex3d_tools_start-3 if moldex3d_tools_start > 0 else moldex3d_end_line -2)
+    moldex3d_tools = get_moldex3d_list(title,moldex3d_tools_start+1 if moldex3d_tools_start > 0 else moldex3d_end_line,moldex3d_end_line -2)
 
     #print(f'\n\n\n\n start start:{moldex3d_start_index} \n end index :{moldex3d_end_index} \n\n')
     moldex_mac.update(mac_title)
-    for t in mod3x_detail:
-        moldex_mac.append("moldex3d",t)
-    #print(f'\n\n\n\n start-start:{mac_title} \n\n')
+    #moldex_mac.macfile_attached = True
+    if len(mod3x_detail) > 0 :
+        for t in mod3x_detail:
+            moldex_mac.append("moldex3d",t)
+
+    if len(moldex3d_mesh):
+        for t in moldex3d_mesh:
+            moldex_mac.append("moldex3d",t)
+    if len(moldex3d_caddoctor) > 0:
+        for t in moldex3d_caddoctor:
+            moldex_mac.append("moldex3d",t)
+    
+    if len(moldex3d_tools) > 0:
+        for t in moldex3d_tools:
+            moldex_mac.append("moldex3d",t)
+    
     moldex_mac.save()
 
 
     #execute('Mac Moldex', to_date, 'csfrder', fcsv, lang=None, show_progress=True)
     file.close()
+    
+    return True
 
 def moldex_index(mlist, term):
     """list, search term"""
-    myreturn = 0
+    myreturn = -1
     for t in range(len(mlist)):
         if (not mlist[t] == []) and (term in mlist[t]):
             myreturn = t
@@ -114,6 +148,10 @@ def moldex_index(mlist, term):
 def get_moldex3d_list(mxlist, start, end):
     subtable= ['software_name','software_key','licensemodesoftware','expire_date','no_license']
     mod3x_detail = []
+
+    if (start == end):
+        return mod3x_detail
+    
     for t in range(start,end,2):
         #mac_moldex_table
         modxd = {}
@@ -128,15 +166,6 @@ def get_moldex3d_list(mxlist, start, end):
         mod3x_detail.append(modxd)
     #print(f'\n\n\n\n start start:{mod3x_detail}  \n\n')
     return mod3x_detail
-
-    """
-    verknupfungen  =- connection
-    Datei          =- file
-    bezeichnung    =- description
-    
-    kunde          =- customer
-    kundenname     =- customername
-    """
     
     
 

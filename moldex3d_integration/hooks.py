@@ -15,6 +15,7 @@ app_license = "MIT"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/moldex3d_integration/css/moldex3d_integration.css"
 # app_include_js = "/assets/moldex3d_integration/js/moldex3d_integration.js"
+# app_include_js = "/moldex3d_integration/moldex3d_integration/app/main.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/moldex3d_integration/css/moldex3d_integration.css"

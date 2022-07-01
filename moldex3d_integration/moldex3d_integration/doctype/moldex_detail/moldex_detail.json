@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-06-26 22:03:15.240838",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "software_name",
+  "software_key",
+  "licensemodesoftware",
+  "expire_date",
+  "no_license"
+ ],
+ "fields": [
+  {
+   "fieldname": "software_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Software Name"
+  },
+  {
+   "fieldname": "software_key",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Software Key"
+  },
+  {
+   "fieldname": "licensemodesoftware",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "LicenseModeSoftware"
+  },
+  {
+   "fieldname": "expire_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expire Date"
+  },
+  {
+   "fieldname": "no_license",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "No License"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2022-06-26 22:24:25.182702",
+ "modified_by": "Administrator",
+ "module": "Moldex3D Integration",
+ "name": "Moldex Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

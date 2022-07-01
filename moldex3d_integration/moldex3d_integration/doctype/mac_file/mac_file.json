@@ -1,0 +1,304 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{customer_id}-{#####}",
+ "creation": "2022-06-30 11:56:20.240238",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "process_section",
+  "upload_component",
+  "column_break_3",
+  "process_file",
+  "section_break_5",
+  "status",
+  "title",
+  "software",
+  "version",
+  "copyright",
+  "column_break_11",
+  "tel",
+  "fax",
+  "website",
+  "email",
+  "date",
+  "macfile_attached",
+  "section_break_18",
+  "customer_id",
+  "customer",
+  "customer_class",
+  "license_mode",
+  "publishing_date",
+  "machine_id",
+  "computer_name",
+  "hard_disk",
+  "mac_address",
+  "column_break_28",
+  "mif_file",
+  "simpatec_kunde",
+  "full_customer_name",
+  "maschine_id_mif",
+  "matching_mif_and_mac",
+  "expires_on",
+  "software_version",
+  "version_section",
+  "major",
+  "minor",
+  "column_break_38",
+  "licensemode",
+  "trial_license",
+  "section_break_41",
+  "moldex3d",
+  "check"
+ ],
+ "fields": [
+  {
+   "fieldname": "process_section",
+   "fieldtype": "Section Break",
+   "label": "Process Mac"
+  },
+  {
+   "fieldname": "upload_component",
+   "fieldtype": "HTML",
+   "label": "Upload Component",
+   "options": "<input id=\"upload_mac\" type=\"file\" value=\"process\">"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "process_file",
+   "fieldtype": "Button",
+   "label": "Process File"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nExpired"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "software",
+   "fieldtype": "Data",
+   "label": "Software"
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Data",
+   "label": "Version"
+  },
+  {
+   "fieldname": "copyright",
+   "fieldtype": "Data",
+   "label": "Copyright"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tel",
+   "fieldtype": "Data",
+   "label": "TEL"
+  },
+  {
+   "fieldname": "fax",
+   "fieldtype": "Data",
+   "label": "FAX"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "macfile_attached",
+   "fieldtype": "Check",
+   "label": "Macfile attached?"
+  },
+  {
+   "fieldname": "section_break_18",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "customer_id",
+   "fieldtype": "Data",
+   "label": "Customer ID"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "label": "Customer"
+  },
+  {
+   "fieldname": "customer_class",
+   "fieldtype": "Data",
+   "label": "Customer Class"
+  },
+  {
+   "fieldname": "license_mode",
+   "fieldtype": "Data",
+   "label": "License Mode"
+  },
+  {
+   "fieldname": "publishing_date",
+   "fieldtype": "Date",
+   "label": "Publishing Date"
+  },
+  {
+   "fieldname": "machine_id",
+   "fieldtype": "Data",
+   "label": "Machine ID"
+  },
+  {
+   "fieldname": "computer_name",
+   "fieldtype": "Data",
+   "label": "Computer Name"
+  },
+  {
+   "fieldname": "hard_disk",
+   "fieldtype": "Data",
+   "label": "Hard Disk"
+  },
+  {
+   "fieldname": "mac_address",
+   "fieldtype": "Data",
+   "label": "MAC Address"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mif_file",
+   "fieldtype": "Link",
+   "label": "MIF File",
+   "options": "MIF File"
+  },
+  {
+   "fetch_from": "simpatec_kunde.customer_name",
+   "fieldname": "full_customer_name",
+   "fieldtype": "Data",
+   "label": "Full Customer Name"
+  },
+  {
+   "fetch_from": "mif_file.machine_id_mif",
+   "fieldname": "maschine_id_mif",
+   "fieldtype": "Data",
+   "label": "Maschine ID MIF"
+  },
+  {
+   "default": "0",
+   "fieldname": "matching_mif_and_mac",
+   "fieldtype": "Check",
+   "label": "Matching MIF and MAC"
+  },
+  {
+   "fieldname": "expires_on",
+   "fieldtype": "Date",
+   "label": "Expires on"
+  },
+  {
+   "depends_on": "eval:doc.simpatec_kunde != null",
+   "fieldname": "software_version",
+   "fieldtype": "Data",
+   "label": "Software Version"
+  },
+  {
+   "fieldname": "version_section",
+   "fieldtype": "Section Break",
+   "label": "Version"
+  },
+  {
+   "fieldname": "major",
+   "fieldtype": "Data",
+   "label": "Major"
+  },
+  {
+   "fieldname": "minor",
+   "fieldtype": "Data",
+   "label": "Minor"
+  },
+  {
+   "fieldname": "column_break_38",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "licensemode",
+   "fieldtype": "Data",
+   "label": "LicenseMode"
+  },
+  {
+   "fieldname": "trial_license",
+   "fieldtype": "Data",
+   "label": "Trial License"
+  },
+  {
+   "fieldname": "section_break_41",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "moldex3d",
+   "fieldtype": "Table",
+   "label": "Moldex3D",
+   "options": "Moldex Detail"
+  },
+  {
+   "default": "0",
+   "fieldname": "check",
+   "fieldtype": "Check",
+   "label": "check"
+  },
+  {
+   "fieldname": "simpatec_kunde",
+   "fieldtype": "Link",
+   "label": "SimpaTec Kunde",
+   "options": "Customer"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-06-30 12:16:29.017229",
+ "modified_by": "Administrator",
+ "module": "Moldex3D Integration",
+ "name": "MAC File",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

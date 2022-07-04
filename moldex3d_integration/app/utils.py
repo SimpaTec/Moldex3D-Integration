@@ -89,7 +89,7 @@ def process_mac_csv(doctype,docname,data_file):
                     mac_title['hard_disk'] = spa[-1].split("/")[1]
                     mac_title['mac_address'] = spa[-1].split("/")[-1].replace(")","", -1)
                 break
-    #print(f'\n\n\n\n {mac_title} \n\n')
+    
     for k,v in version_mac.items():
         for t in title:
             if (not t == [])and (v in t[0]):
@@ -106,13 +106,15 @@ def process_mac_csv(doctype,docname,data_file):
     moldex3d_end_line = len(title)
 
     mod3x_detail = get_moldex3d_list(title,moldex3d_start_index+1,moldex3d_mesh_start-3 if moldex3d_mesh_start > 0 else moldex3d_end_line -2)    
-    moldex3d_mesh = get_moldex3d_list(title,moldex3d_mesh_start+1 if moldex3d_mesh_start > 0 else moldex3d_end_line,moldex3d_caddoctor_start-3 if moldex3d_caddoctor_start > 0 else moldex3d_end_line -2)
-    moldex3d_caddoctor = get_moldex3d_list(title,moldex3d_caddoctor_start+1  if moldex3d_caddoctor_start > 0 else moldex3d_end_line,moldex3d_tools_start-3 if moldex3d_tools_start > 0 else moldex3d_end_line -2)
-    moldex3d_tools = get_moldex3d_list(title,moldex3d_tools_start+1 if moldex3d_tools_start > 0 else moldex3d_end_line,moldex3d_end_line -2)
+    #moldex3d_mesh = get_moldex3d_list(title,moldex3d_mesh_start+1 if moldex3d_mesh_start > 0 else moldex3d_end_line, moldex3d_caddoctor_start-3 if moldex3d_caddoctor_start > 0 else moldex3d_end_line -2)
+    moldex3d_mesh = get_moldex3d_list(title,moldex3d_mesh_start+1 if moldex3d_mesh_start > 0 else moldex3d_end_line -2, moldex3d_end_line -2 if moldex3d_mesh_start < 0  else (moldex3d_caddoctor_start-3 if moldex3d_caddoctor_start > 0 else moldex3d_end_line -2) )
+    #moldex3d_caddoctor = get_moldex3d_list(title,moldex3d_caddoctor_start+1  if moldex3d_caddoctor_start > 0 else moldex3d_end_line,moldex3d_tools_start-3 if moldex3d_tools_start > 0 else moldex3d_end_line -2)
+    moldex3d_caddoctor = get_moldex3d_list(title,moldex3d_caddoctor_start+1  if moldex3d_caddoctor_start > 0 else moldex3d_end_line -2, moldex3d_end_line -2 if moldex3d_caddoctor_start < 0 else (moldex3d_tools_start-3 if moldex3d_tools_start > 0 else moldex3d_end_line -2))
+    #moldex3d_tools = get_moldex3d_list(title,moldex3d_tools_start+1 if moldex3d_tools_start > 0 else moldex3d_end_line,moldex3d_end_line -2)
+    moldex3d_tools = get_moldex3d_list(title,moldex3d_tools_start+1 if moldex3d_tools_start > 0 else moldex3d_end_line-2, moldex3d_end_line -2)
 
     #print(f'\n\n\n\n start start:{moldex3d_start_index} \n end index :{moldex3d_end_index} \n\n')
     moldex_mac.update(mac_title)
-    #moldex_mac.macfile_attached = True
     if len(mod3x_detail) > 0 :
         for t in mod3x_detail:
             moldex_mac.append("moldex3d",t)
@@ -153,7 +155,7 @@ def get_moldex3d_list(mxlist, start, end):
         return mod3x_detail
     
     for t in range(start,end,2):
-        #mac_moldex_table
+        
         modxd = {}
         modxd["software_name"] = mxlist[t][0].split("=")[0]
         modxd["software_key"] = mxlist[t][0].split("=")[-1]
@@ -164,7 +166,7 @@ def get_moldex3d_list(mxlist, start, end):
         modxd["no_license"] =submx[sx:].split(")")[-1].split("-")[-1]
         
         mod3x_detail.append(modxd)
-    #print(f'\n\n\n\n start start:{mod3x_detail}  \n\n')
+    
     return mod3x_detail
     
     

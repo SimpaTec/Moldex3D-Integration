@@ -8,7 +8,16 @@ from frappe.utils import now
 from moldex3d_integration.app.utils import process_mac_csv,create_folder
 
 class MACFile(Document):
-	pass
+	#pass
+	def validate(self):		
+		#self.validate_membership()
+		pass
+
+	def match_mac_mif(self):
+		
+		#self.software_version = frappe.generate_hash('Mac File' 8)
+		pass
+
 
 @frappe.whitelist()
 def process_moldex_mac(data):
@@ -23,11 +32,6 @@ def process_moldex_mac(data):
 	doctype_folder = create_folder(_(data), "Home")
 	#print(f'\n\n\n\n start : {doctype_folder} \n\n {data} \n\n')
 	#title_folder = create_folder(title, doctype_folder)
-	""" if doc.machine_id == doc.mschine_id_mif:
-		doc.matching_mif_and_mac = 1
-	else:
-		doc.matching_mif_and_mac = 0
-		frappe.msgprint(_("Maschine IDs not set or do not match")) """
 
 	return moldex_pro.name
 	

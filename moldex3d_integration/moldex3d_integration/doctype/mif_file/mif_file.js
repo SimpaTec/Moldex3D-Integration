@@ -2,7 +2,9 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('MIF File', {
-	// refresh: function(frm) {
-
-	// }
+	refresh: function(frm) {
+		if(frm.is_new() ){
+			frm.set_df_property("file_section", "hidden", 1);
+		}	
+	}
 });

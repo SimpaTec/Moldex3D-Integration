@@ -6,6 +6,10 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "file_section",
+  "title",
+  "column_break_3",
+  "mif_upload",
   "properties_section",
   "status",
   "customer",
@@ -29,17 +33,20 @@
   },
   {
    "fieldname": "customer",
-   "fieldtype": "Data",
-   "label": "Customer"
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
   },
   {
    "fieldname": "column_break_4",
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "customer.customer_name",
    "fieldname": "customer_name",
    "fieldtype": "Data",
-   "label": "Customer Name"
+   "label": "Customer Name",
+   "read_only": 1
   },
   {
    "fieldname": "created_on",
@@ -50,10 +57,29 @@
    "fieldname": "machine_id_mif",
    "fieldtype": "Data",
    "label": "Machine ID MIF"
+  },
+  {
+   "fieldname": "file_section",
+   "fieldtype": "Section Break",
+   "label": "File"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mif_upload",
+   "fieldtype": "Attach",
+   "label": "MIF Upload"
   }
  ],
  "links": [],
- "modified": "2022-07-01 10:34:09.545141",
+ "modified": "2022-07-04 12:09:07.911801",
  "modified_by": "Administrator",
  "module": "Moldex3D Integration",
  "name": "MIF File",

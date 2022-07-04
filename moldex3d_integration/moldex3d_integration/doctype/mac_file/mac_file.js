@@ -80,5 +80,29 @@ frappe.ui.form.on('MAC File', {
 		else {
 			frappe.msgprint('Please select a moldex mac file');
 		}
-	  },
+	},
+	mif_file: function (frm) {
+		/* frm.call('match_mac_mif')
+		.then(r =>{
+			if(r.message){
+				frm.set_value('software_version', r.message);
+			}
+			console.log('r :',r);
+		}); */
+		if(frm.machine_id == frm.maschine_id_mif){ 
+			frm.set_value('matching_mif_and_mac', 1);
+			
+		}
+		else{
+
+			//frm.disable_save();
+			var msg = "Machine IDs not set or do not match";
+			frappe.msgprint({
+				title: __('Warning Notification'),
+				  indicator: 'red',
+				  message: msg
+			  });
+		}
+	},
+
 });

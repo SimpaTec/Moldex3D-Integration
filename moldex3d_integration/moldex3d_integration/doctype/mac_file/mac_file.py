@@ -15,6 +15,7 @@ def process_moldex_mac(data):
 
 	doc_dict = {
 		'doctype': data,
+		'macfile_attached':True
 	}
 	moldex_pro = frappe.get_doc(doc_dict).insert()			
 	moldex_pro.save()
@@ -22,13 +23,14 @@ def process_moldex_mac(data):
 	doctype_folder = create_folder(_(data), "Home")
 	#print(f'\n\n\n\n start : {doctype_folder} \n\n {data} \n\n')
 	#title_folder = create_folder(title, doctype_folder)
-
-	return moldex_pro.name
 	""" if doc.machine_id == doc.mschine_id_mif:
 		doc.matching_mif_and_mac = 1
 	else:
 		doc.matching_mif_and_mac = 0
 		frappe.msgprint(_("Maschine IDs not set or do not match")) """
+
+	return moldex_pro.name
+	
 	
 
 

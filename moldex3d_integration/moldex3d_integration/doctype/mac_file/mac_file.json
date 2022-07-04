@@ -49,8 +49,7 @@
   "licensemode",
   "trial_license",
   "section_break_41",
-  "moldex3d",
-  "check"
+  "moldex3d"
  ],
  "fields": [
   {
@@ -129,7 +128,7 @@
   },
   {
    "fieldname": "date",
-   "fieldtype": "Date",
+   "fieldtype": "Datetime",
    "label": "Date"
   },
   {
@@ -274,7 +273,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-07-01 12:16:29.017229",
+ "modified": "2022-07-01 18:25:25.742507",
  "modified_by": "Administrator",
  "module": "Moldex3D Integration",
  "name": "MAC File",

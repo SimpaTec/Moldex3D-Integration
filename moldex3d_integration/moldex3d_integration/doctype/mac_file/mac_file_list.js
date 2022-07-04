@@ -76,7 +76,7 @@ frappe.listview_settings['MAC File'] = {
 								}).then(r => {
 									var options = [];
 									//console.log('final call',r.message);
-									frm.reload_doc();
+									list_view.refresh();
 								});
 								//
 							}

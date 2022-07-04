@@ -52,7 +52,7 @@ frappe.ui.form.on('MAC File', {
 							//console.log('middle:',data.message.file_url);
 							if (data.message){
 								frappe.call({				
-									method: 'moldex3d_integration.moldex3d_integration.doctype.moldex_mac.moldex_mac.update_moldex_mac',
+									method: 'moldex3d_integration.moldex3d_integration.doctype.mac_file.mac_file.update_moldex_mac',
 									
 									args: {
 										doctype:frm.doc.doctype,

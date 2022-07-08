@@ -104,7 +104,6 @@ def process_mac_csv(doctype,docname,data_file):
     mod3x_detail = []
     for z in range(len(counter)):        
         start,end = 0,0
-        #print(f'\n sz:{z} zs:{len(counter)-1}\n')
         if (not z == (len(counter)-1)):
             """do your stuff"""                                  
             start = counter[z]+1
@@ -115,16 +114,24 @@ def process_mac_csv(doctype,docname,data_file):
 
         for t in range(start,end,2):
             modxd = {}
-            #print(f'\n\n\n\n start:{title[t][0]} \n\n\n')
             modxd["software_name"] = title[t][0].split("=")[0]
             modxd["software_key"] = title[t][0].split("=")[-1]
-            sx = len(title[t][0].split("=")[0])+2
-            submx = title[t+1][0].split("=")[-1]
-            modxd["licensemodesoftware"] = submx[sx:].split(")")[0]+")"
-            modxd["expire_date"] =submx[sx:].split(")")[-1].split("-")[1]
-            modxd["no_license"] =submx[sx:].split(")")[-1].split("-")[-1]
+            next = title[t+1][0]
+            if next.startswith(';'):
+                l2 = next[1:]
+                a =  l2.find('(')
+                b =  l2.rfind(')')
+                if a < b:
+                    tag = l2[a:b+1] 
+                    #data = l2.replace(tag, '')   
+                    # data = data.split('-')            
+                    l2 = l2.split(tag,)[-1].split("-")
+                    modxd["licensemodesoftware"] = tag
+                    modxd["expire_date"] =l2[1]
+                    modxd["no_license"] =l2[-1]
             
             mod3x_detail.append(modxd)
+            
         
     if len(mod3x_detail) > 0 :
         for t in mod3x_detail:
@@ -157,17 +164,22 @@ def get_moldex3d_list(mxlist, start, end):
     
     for t in range(start,end,2):
         
+        
         modxd = {}
         #print(f'\n\n\n\n start:{mxlist[t][0]} \n\n\n')
         modxd["software_name"] = mxlist[t][0].split("=")[0]
         modxd["software_key"] = mxlist[t][0].split("=")[-1]
         sx = len(mxlist[t][0].split("=")[0])+2
+
         submx = mxlist[t+1][0].split("=")[-1]
         modxd["licensemodesoftware"] = submx[sx:].split(")")[0]+")"
         modxd["expire_date"] =submx[sx:].split(")")[-1].split("-")[1]
         modxd["no_license"] =submx[sx:].split(")")[-1].split("-")[-1]
         
         mod3x_detail.append(modxd)
+        #submx[sx:].split(")")[0]+")"
+        
+        
     
     return mod3x_detail
     
@@ -200,4 +212,3 @@ def create_folder(folder, parent):
         create_new_folder(folder, parent)
     
     return new_folder_name
-    

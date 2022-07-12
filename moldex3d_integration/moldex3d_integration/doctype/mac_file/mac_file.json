@@ -85,22 +85,26 @@
   {
    "fieldname": "title",
    "fieldtype": "Data",
-   "label": "Title"
+   "label": "Title",
+   "read_only": 1
   },
   {
    "fieldname": "software",
    "fieldtype": "Data",
-   "label": "Software"
+   "label": "Software",
+   "read_only": 1
   },
   {
    "fieldname": "version",
    "fieldtype": "Data",
-   "label": "Version"
+   "label": "Version",
+   "read_only": 1
   },
   {
    "fieldname": "copyright",
    "fieldtype": "Data",
-   "label": "Copyright"
+   "label": "Copyright",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_11",
@@ -109,22 +113,26 @@
   {
    "fieldname": "tel",
    "fieldtype": "Data",
-   "label": "TEL"
+   "label": "TEL",
+   "read_only": 1
   },
   {
    "fieldname": "fax",
    "fieldtype": "Data",
-   "label": "FAX"
+   "label": "FAX",
+   "read_only": 1
   },
   {
    "fieldname": "website",
    "fieldtype": "Data",
-   "label": "Website"
+   "label": "Website",
+   "read_only": 1
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
-   "label": "Email"
+   "label": "Email",
+   "read_only": 1
   },
   {
    "fieldname": "date",
@@ -135,7 +143,8 @@
    "default": "0",
    "fieldname": "macfile_attached",
    "fieldtype": "Check",
-   "label": "Macfile attached?"
+   "label": "Macfile attached?",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_18",
@@ -144,47 +153,56 @@
   {
    "fieldname": "customer_id",
    "fieldtype": "Data",
-   "label": "Customer ID"
+   "label": "Customer ID",
+   "read_only": 1
   },
   {
    "fieldname": "customer",
    "fieldtype": "Data",
-   "label": "Customer"
+   "label": "Customer",
+   "read_only": 1
   },
   {
    "fieldname": "customer_class",
    "fieldtype": "Data",
-   "label": "Customer Class"
+   "label": "Customer Class",
+   "read_only": 1
   },
   {
    "fieldname": "license_mode",
    "fieldtype": "Data",
-   "label": "License Mode"
+   "label": "License Mode",
+   "read_only": 1
   },
   {
    "fieldname": "publishing_date",
    "fieldtype": "Date",
-   "label": "Publishing Date"
+   "label": "Publishing Date",
+   "read_only": 1
   },
   {
    "fieldname": "machine_id",
    "fieldtype": "Data",
-   "label": "Machine ID"
+   "label": "Machine ID",
+   "read_only": 1
   },
   {
    "fieldname": "computer_name",
    "fieldtype": "Data",
-   "label": "Computer Name"
+   "label": "Computer Name",
+   "read_only": 1
   },
   {
    "fieldname": "hard_disk",
    "fieldtype": "Data",
-   "label": "Hard Disk"
+   "label": "Hard Disk",
+   "read_only": 1
   },
   {
    "fieldname": "mac_address",
    "fieldtype": "Data",
-   "label": "MAC Address"
+   "label": "MAC Address",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_28",
@@ -200,7 +218,8 @@
    "fetch_from": "simpatec_kunde.customer_name",
    "fieldname": "full_customer_name",
    "fieldtype": "Data",
-   "label": "Full Customer Name"
+   "label": "Full Customer Name",
+   "read_only": 1
   },
   {
    "fetch_from": "mif_file.machine_id_mif",
@@ -212,7 +231,8 @@
    "default": "0",
    "fieldname": "matching_mif_and_mac",
    "fieldtype": "Check",
-   "label": "Matching MIF and MAC"
+   "label": "Matching MIF and MAC",
+   "read_only": 1
   },
   {
    "fieldname": "expires_on",
@@ -223,7 +243,8 @@
    "depends_on": "eval:doc.simpatec_kunde != null",
    "fieldname": "software_version",
    "fieldtype": "Data",
-   "label": "Software Version"
+   "label": "Software Version",
+   "read_only": 1
   },
   {
    "fieldname": "version_section",
@@ -233,12 +254,14 @@
   {
    "fieldname": "major",
    "fieldtype": "Data",
-   "label": "Major"
+   "label": "Major",
+   "read_only": 1
   },
   {
    "fieldname": "minor",
    "fieldtype": "Data",
-   "label": "Minor"
+   "label": "Minor",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_38",
@@ -247,12 +270,14 @@
   {
    "fieldname": "licensemode",
    "fieldtype": "Data",
-   "label": "LicenseMode"
+   "label": "LicenseMode",
+   "read_only": 1
   },
   {
    "fieldname": "trial_license",
    "fieldtype": "Data",
-   "label": "Trial License"
+   "label": "Trial License",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_41",
@@ -273,7 +298,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-07-01 18:25:25.742507",
+ "modified": "2022-07-09 16:12:35.803187",
  "modified_by": "Administrator",
  "module": "Moldex3D Integration",
  "name": "MAC File",

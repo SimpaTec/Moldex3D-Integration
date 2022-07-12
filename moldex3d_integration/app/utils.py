@@ -123,8 +123,9 @@ def process_mac_csv(doctype,docname,data_file):
                 b =  l2.rfind(')')
                 if a < b:
                     tag = l2[a:b+1] 
-                    #data = l2.replace(tag, '')   
-                    # data = data.split('-')            
+                    """ data = l2.replace(tag, '')   
+                    data = data.split('-')
+                    print(f'\n\n\n\n strt : {data} \n\n\n\n') """            
                     l2 = l2.split(tag,)[-1].split("-")
                     modxd["licensemodesoftware"] = tag
                     modxd["expire_date"] =l2[1]

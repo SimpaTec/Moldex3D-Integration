@@ -94,7 +94,6 @@ frappe.ui.form.on('MAC File', {
 			
 		}
 		else{
-
 			//frm.disable_save();
 			var msg = "Machine IDs not set or do not match";
 			frappe.msgprint({

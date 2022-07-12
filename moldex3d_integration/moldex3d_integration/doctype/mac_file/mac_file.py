@@ -8,13 +8,10 @@ from frappe.utils import now
 from moldex3d_integration.app.utils import process_mac_csv,create_folder
 
 class MACFile(Document):
-	#pass
-	def validate(self):		
-		#self.validate_membership()
-		pass
+	""" def validate(self):		
+		pass """
 
-	def match_mac_mif(self):
-		
+	def match_mac_mif(self):		
 		#self.software_version = frappe.generate_hash('Mac File' 8)
 		pass
 

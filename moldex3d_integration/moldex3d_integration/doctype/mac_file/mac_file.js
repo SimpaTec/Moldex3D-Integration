@@ -9,7 +9,6 @@ frappe.ui.form.on('MAC File', {
 
 	},
 	process_file: function (frm) {
-		const _filename = (name) => `${name}-MX3d.mac`; //.pdf
 		var filedata = $('#upload_mac')[0].files[0];
 		if (filedata != undefined && filedata.name != null) {
 			console.log(`you: ${filedata.name} `);
@@ -19,7 +18,7 @@ frappe.ui.form.on('MAC File', {
 					data: frm.doc.doctype
 				},
 				callback: function (r) {
-					//console.log('first call : ',r.message,'doctype : ',frm.doc.doctype);
+					console.log('first call : ',r.message,'doctype : ',frm.doc.doctype);
 					if (r.message != null ) {
 						frappe.show_alert({
 							message: __("Mac file Processed ... : ",r.message),

@@ -8,12 +8,10 @@ from frappe.utils import now
 from moldex3d_integration.app.utils import process_mac_csv,create_folder
 
 class MACFile(Document):
-	""" def validate(self):		
-		pass """
-
-	def match_mac_mif(self):		
+	""" def match_mac_mif(self):		
 		#self.software_version = frappe.generate_hash('Mac File' 8)
-		pass
+		pass """
+	pass
 
 
 @frappe.whitelist()
@@ -23,7 +21,8 @@ def process_moldex_mac(data):
 		'doctype': data,
 		'macfile_attached':True
 	}
-	moldex_pro = frappe.get_doc(doc_dict).insert()			
+	moldex_pro = frappe.get_doc(doc_dict).insert()	
+	moldex_pro.ignore_permissions = True		
 	moldex_pro.save()
 
 	doctype_folder = create_folder(_(data), "Home")

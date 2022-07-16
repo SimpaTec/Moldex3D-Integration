@@ -8,9 +8,6 @@ from frappe.utils import now
 from moldex3d_integration.app.utils import process_mac_csv,create_folder
 
 class MACFile(Document):
-	""" def match_mac_mif(self):		
-		#self.software_version = frappe.generate_hash('Mac File' 8)
-		pass """
 	pass
 
 
@@ -28,6 +25,11 @@ def process_moldex_mac(data):
 	doctype_folder = create_folder(_(data), "Home")
 	#print(f'\n\n\n\n start : {doctype_folder} \n\n {data} \n\n')
 	#title_folder = create_folder(title, doctype_folder)
+
+	#naming series = mac-{YY}-{#####}
+	# expired on
+	# and date field work 
+	# the go live
 
 	return moldex_pro.name
 	

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{customer_id}-{#####}",
+ "autoname": "format:{customer_id}-{YY}-{#####}",
  "creation": "2022-06-30 11:56:20.240238",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -137,7 +137,8 @@
   {
    "fieldname": "date",
    "fieldtype": "Datetime",
-   "label": "Date"
+   "label": "Date",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -225,7 +226,8 @@
    "fetch_from": "mif_file.machine_id_mif",
    "fieldname": "maschine_id_mif",
    "fieldtype": "Data",
-   "label": "Maschine ID MIF"
+   "label": "Maschine ID MIF",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -237,7 +239,8 @@
   {
    "fieldname": "expires_on",
    "fieldtype": "Date",
-   "label": "Expires on"
+   "label": "Expires on",
+   "read_only": 1
   },
   {
    "depends_on": "eval:doc.simpatec_kunde != null",
@@ -298,7 +301,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-07-09 16:12:35.803187",
+ "modified": "2022-07-15 21:49:40.782768",
  "modified_by": "Administrator",
  "module": "Moldex3D Integration",
  "name": "MAC File",

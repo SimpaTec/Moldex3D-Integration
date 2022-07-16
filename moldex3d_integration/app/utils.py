@@ -11,7 +11,7 @@ import six
 from six import StringIO, text_type, string_types
 from frappe.utils import encode, cstr, cint, flt
 from frappe.core.doctype.file.file import create_new_folder
-from frappe.utils import get_datetime
+from frappe.utils import get_datetime,nowdate
 #from .attach_csv import execute
 
 
@@ -35,6 +35,7 @@ def process_mac_csv(doctype,docname,data_file):
         'fax':'FAX',
         'website':'Website',
         'email':'Email',
+        'date':'Date',
         'customer_id':'Customer ID' ,
         'customer':'Customer',
         'customer_class':'Customer Class',
@@ -57,14 +58,14 @@ def process_mac_csv(doctype,docname,data_file):
     file = open(file_path)
     csvreader = csv.reader(file)
 
-    stop_checker = False
+    expires_date = nowdate
     # result = mu_string.replace(",","", 1) #first comma
     for row in csvreader:
         writer.writerow(row)
         title.append(row)  
 
     """ fcsv = writer.getvalue()
-    print(f'\n\n\n\n start : {fcsv} \n\n\n\n')
+    print(f'\n\n start : {fcsv} \n\n')
      """
 
     moldex_mac = frappe.get_doc(doctype, docname) 
@@ -75,10 +76,16 @@ def process_mac_csv(doctype,docname,data_file):
     for k,v in title_mac.items():
         for t in title:
             if v in t[0]:
-                if not v == "Machine ID":
-                    spa = t[0].split(":")[-1]
-                    mac_title[k] = spa
-                
+                if v == "Date":
+                    #spa = t[0].split(":")[-1]
+                    next = t[0]
+                    if next.startswith(';'):                        
+                        l2 = next[1:]
+                        a =  l2.find(':')                    
+                        tag = l2[a:].replace(":","", 1)                        
+                        mac_title[k] = tag
+                    
+
                 elif v == "Machine ID":
                     dspa = t[0].split(":")[-1]
                     spa = dspa.split(" ")
@@ -86,6 +93,9 @@ def process_mac_csv(doctype,docname,data_file):
                     mac_title['computer_name'] = spa[-1].split("/")[0].replace("(","", 1)
                     mac_title['hard_disk'] = spa[-1].split("/")[1]
                     mac_title['mac_address'] = spa[-1].split("/")[-1].replace(")","", -1)
+                elif not v == "Machine ID":
+                    spa = t[0].split(":")[-1]
+                    mac_title[k] = spa
                 break
     
     for k,v in version_mac.items():
@@ -129,15 +139,16 @@ def process_mac_csv(doctype,docname,data_file):
                     l2 = l2.split(tag,)[-1].split("-")
                     modxd["licensemodesoftware"] = tag
                     modxd["expire_date"] =l2[1]
+                    expires_date = l2[1]
                     modxd["no_license"] =l2[-1]
             
             mod3x_detail.append(modxd)
             
-        
+    moldex_mac.expires_on = expires_date
     if len(mod3x_detail) > 0 :
         for t in mod3x_detail:
             moldex_mac.append("moldex3d",t)
-    ##print(f'\n\n\n\n start start:{moldex3d_start_index} \n end index :{moldex3d_end_index} \n\n')    
+    ##print(f'\n\n\n\n start start:{moldex3d_start_index} \n end index :{moldex3d_end_index} \n\n') 
     moldex_mac.save()
 
 

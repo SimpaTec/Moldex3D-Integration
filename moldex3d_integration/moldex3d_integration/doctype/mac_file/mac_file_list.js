@@ -1,6 +1,7 @@
 frappe.listview_settings['MAC File'] = {
     onload: function(list_view) {
 		//let me = this;
+		//var filedata = "";
 		list_view.page.add_inner_button(__("Process Mac File"), function() {
 					
 			let dialog = new frappe.ui.Dialog({
@@ -12,20 +13,13 @@ frappe.listview_settings['MAC File'] = {
 							fieldtype: "HTML",
 							options: "<input id=\"upload_mac\" type=\"file\" value=\"process\">"
 						},
-						{
-						fieldname: 'upload_mac',
-						label: __('Upload mac file'),
-						fieldtype: 'Data',
-						hidden: 1
-						}
 					],
 					primary_action(data) {
-						let filedata = $('#upload_mac')[0].files[0];
-						if (filedata == undefined && filedata.name == null) {
-						frappe.msgprint(__("Upload a .mac file"
-							));
+						let filedata = $('#upload_mac')[0].files[0];						
+						if (filedata == undefined && filedata.name == null) {							
+						frappe.msgprint(__("Upload a .mac file"));
 						} 
-						else {
+						else {							
 
 							frappe.confirm(__('Process Mac file '), () => {
 								frappe.call({
@@ -61,7 +55,7 @@ frappe.listview_settings['MAC File'] = {
 											.then(res => res.json())
 											.then(data => {
 									
-												if (data.message){
+												if (data.message){													
 											
 													frappe.call({				
 														method: 'moldex3d_integration.moldex3d_integration.doctype.mac_file.mac_file.update_moldex_mac',
@@ -83,16 +77,21 @@ frappe.listview_settings['MAC File'] = {
 										}
 									}
 								});
-							});
-						}					
+							})
+							
+						}							
+						dialog.set_df_property("upload_component", "options", []);
 						dialog.hide();
-						list_view.refresh();
+						list_view.refresh();					
+						
 					},
 					primary_action_label: __('Process Mac File')
 
 			});
-			dialog.$wrapper.find('.btn-modal-primary').removeClass('btn-primary').addClass('btn-dark');
+			
 			dialog.show();
+			dialog.$wrapper.find('.btn-modal-primary').removeClass('btn-primary').addClass('btn-dark');		
+			
 		});
 		list_view.page.change_inner_button_type('Process Mac File',null, 'dark');
 

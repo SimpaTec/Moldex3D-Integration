@@ -144,8 +144,7 @@
    "default": "0",
    "fieldname": "macfile_attached",
    "fieldtype": "Check",
-   "label": "Macfile attached?",
-   "read_only": 1
+   "label": "Macfile attached?"
   },
   {
    "fieldname": "section_break_18",
@@ -246,8 +245,7 @@
    "depends_on": "eval:doc.simpatec_kunde != null",
    "fieldname": "software_version",
    "fieldtype": "Data",
-   "label": "Software Version",
-   "read_only": 1
+   "label": "Software Version"
   },
   {
    "fieldname": "version_section",
@@ -301,7 +299,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-07-19 11:23:45.166067",
+ "modified": "2022-07-21 11:23:45.166067",
  "modified_by": "Administrator",
  "module": "Moldex3D Integration",
  "name": "MAC File",

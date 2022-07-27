@@ -1,3 +1,4 @@
+
 frappe.listview_settings['MAC File'] = {
     onload: function(list_view) {
 		//let me = this;
@@ -96,5 +97,6 @@ frappe.listview_settings['MAC File'] = {
 		list_view.page.change_inner_button_type('Process Mac File',null, 'dark');
 
 	},
-    
+	
 }
+

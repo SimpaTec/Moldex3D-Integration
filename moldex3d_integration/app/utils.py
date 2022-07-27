@@ -58,7 +58,7 @@ def process_mac_csv(doctype,docname,data_file):
     file = open(file_path)
     csvreader = csv.reader(file)
 
-    expires_date = nowdate
+    expires_date = nowdate() #date = nowdate() if not posting_date else posting_date
     # result = mu_string.replace(",","", 1) #first comma
     for row in csvreader:
         writer.writerow(row)
@@ -69,15 +69,11 @@ def process_mac_csv(doctype,docname,data_file):
      """
 
     moldex_mac = frappe.get_doc(doctype, docname) 
-    """ elif v == "Date":
-                    spa = t[0].split(":")[-1]
-                    mac_title[k] = get_datetime(spa) """
 
     for k,v in title_mac.items():
         for t in title:
             if v in t[0]:
                 if v == "Date":
-                    #spa = t[0].split(":")[-1]
                     next = t[0]
                     if next.startswith(';'):                        
                         l2 = next[1:]
@@ -132,10 +128,7 @@ def process_mac_csv(doctype,docname,data_file):
                 a =  l2.find('(')
                 b =  l2.rfind(')')
                 if a < b:
-                    tag = l2[a:b+1] 
-                    """ data = l2.replace(tag, '')   
-                    data = data.split('-')
-                    print(f'\n\n\n\n strt : {data} \n\n\n\n') """            
+                    tag = l2[a:b+1]           
                     l2 = l2.split(tag,)[-1].split("-")
                     modxd["licensemodesoftware"] = tag
                     modxd["expire_date"] =l2[1]
@@ -167,8 +160,6 @@ def moldex_index(mlist, term):
     return myreturn
 
 def get_moldex3d_list(mxlist, start, end):
-    #[Moldex3D SYNC],[Moldex3D Tools]
-    subtable= ['software_name','software_key','licensemodesoftware','expire_date','no_license']
     mod3x_detail = []
 
     if (start == end):
@@ -178,7 +169,6 @@ def get_moldex3d_list(mxlist, start, end):
         
         
         modxd = {}
-        #print(f'\n\n\n\n start:{mxlist[t][0]} \n\n\n')
         modxd["software_name"] = mxlist[t][0].split("=")[0]
         modxd["software_key"] = mxlist[t][0].split("=")[-1]
         sx = len(mxlist[t][0].split("=")[0])+2

@@ -2,6 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "creation": "2022-06-30 02:04:49.680711",
+ "autoname": "format:{customer}-{#####}",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -35,6 +36,7 @@
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
+   "reqd": 1,
    "options": "Customer"
   },
   {
@@ -79,7 +81,7 @@
   }
  ],
  "links": [],
- "modified": "2022-07-04 12:09:07.911801",
+ "modified": "2022-07-21 12:09:07.911801",
  "modified_by": "Administrator",
  "module": "Moldex3D Integration",
  "name": "MIF File",

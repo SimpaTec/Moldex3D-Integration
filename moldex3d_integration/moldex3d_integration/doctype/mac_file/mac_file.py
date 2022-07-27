@@ -23,13 +23,7 @@ def process_moldex_mac(data):
 	moldex_pro.save()
 
 	doctype_folder = create_folder(_(data), "Home")
-	#print(f'\n\n\n\n start : {doctype_folder} \n\n {data} \n\n')
 	#title_folder = create_folder(title, doctype_folder)
-
-	#naming series = mac-{YY}-{#####}
-	# expired on
-	# and date field work 
-	# the go live
 
 	return moldex_pro.name
 	
@@ -39,6 +33,6 @@ def process_moldex_mac(data):
 @frappe.whitelist()
 def update_moldex_mac(doctype,docname,data_file):
 	"""read mac file and update fields"""
-	#csv_content = read_csv_content_from_attached_file("bizerp.dev/public"+data_file)
 	csv_content = process_mac_csv(doctype,docname,data_file)
+	#return {"name": invoice_doc.name, "status": invoice_doc.docstatus}
 	return csv_content

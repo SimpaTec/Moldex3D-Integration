@@ -124,16 +124,18 @@ def process_mac_csv(doctype,docname,data_file):
             modxd["software_key"] = title[t][0].split("=")[-1]
             next = title[t+1][0]
             if next.startswith(';'):
+                tag = "Floating"
                 l2 = next[1:]
                 a =  l2.find('(')
                 b =  l2.rfind(')')
                 if a < b:
-                    tag = l2[a:b+1]           
-                    l2 = l2.split(tag,)[-1].split("-")
-                    modxd["licensemodesoftware"] = tag
-                    modxd["expire_date"] =l2[1]
-                    expires_date = l2[1]
-                    modxd["no_license"] =l2[-1]
+                    tag = l2[a:b+1]  
+                    
+                l2 = l2.split(tag,)[-1].split("-")
+                modxd["licensemodesoftware"] = tag
+                modxd["expire_date"] =l2[1]
+                expires_date = l2[1]
+                modxd["no_license"] =l2[-1]
             
             mod3x_detail.append(modxd)
             

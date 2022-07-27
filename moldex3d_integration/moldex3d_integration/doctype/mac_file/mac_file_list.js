@@ -98,5 +98,6 @@ frappe.listview_settings['MAC File'] = {
 
 	},
 	
+    
 }
 

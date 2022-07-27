@@ -94,8 +94,6 @@ frappe.ui.form.on('MAC File', {
 		}
 		else{
 			frm.set_value('matching_mif_and_mac', 1);
-			//frm.refresh();
-			//frm.disable_save();
 			
 		}
 	},

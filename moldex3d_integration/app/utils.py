@@ -26,6 +26,10 @@ def process_mac_csv(doctype,docname,data_file):
     mac_moldex_table = {
     }
     #'date':'Date',
+    """
+    'date':'Date',        
+        'machine_id':'Machine ID',
+    """
     title_mac ={
         'title':'Title' ,
         'version':'Version' ,
@@ -35,13 +39,13 @@ def process_mac_csv(doctype,docname,data_file):
         'fax':'FAX',
         'website':'Website',
         'email':'Email',
-        'date':'Date',
-        'customer_id':'Customer ID' ,
-        'customer':'Customer',
-        'customer_class':'Customer Class',
+        'customer':'Customer',        
+        'customer_id':'Customer ID',
         'license_mode':'License Mode',
-        'publishing_date':'Publishing Date',        
-        'machine_id':'Machine ID',        
+        'customer_class':'Customer Class',        
+        'publishing_date':'Publishing Date',
+        'date':'Date',        
+        'machine_id':'Machine ID'                
     }
     version_mac = {
         'major':'Major',
@@ -67,21 +71,30 @@ def process_mac_csv(doctype,docname,data_file):
     """ fcsv = writer.getvalue()
     print(f'\n\n start : {fcsv} \n\n')
      """
-
-    moldex_mac = frappe.get_doc(doctype, docname) 
-
-    for k,v in title_mac.items():
+    moldex_mac = frappe.get_doc(doctype, docname)    
+    for k,v in title_mac.items(): 
+        rtro = ""
+        verifyr = ("customer" == k)        
         for t in title:
-            if v in t[0]:
+            ht = t[0].split(":")[0].replace(";","",1).strip()
+            checkr = ("Customer" == ht)
+            if checkr:
+                rtro=t[0].split(":")[-1]                
+                mac_title["customer"] = rtro
+                
+
+            if v in t[0]:                
                 if v == "Date":
                     next = t[0]
                     if next.startswith(';'):                        
                         l2 = next[1:]
                         a =  l2.find(':')                    
                         tag = l2[a:].replace(":","", 1)                        
-                        mac_title[k] = tag
+                        mac_title[k] = tag 
+                     
+                elif v == "Customer":                    
+                    print(f'{rtro}')                    
                     
-
                 elif v == "Machine ID":
                     dspa = t[0].split(":")[-1]
                     spa = dspa.split(" ")
@@ -143,7 +156,6 @@ def process_mac_csv(doctype,docname,data_file):
     if len(mod3x_detail) > 0 :
         for t in mod3x_detail:
             moldex_mac.append("moldex3d",t)
-    ##print(f'\n\n\n\n start start:{moldex3d_start_index} \n end index :{moldex3d_end_index} \n\n') 
     moldex_mac.save()
 
 

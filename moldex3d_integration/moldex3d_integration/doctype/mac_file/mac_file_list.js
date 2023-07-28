@@ -17,7 +17,7 @@ frappe.listview_settings['MAC File'] = {
 					],
 					primary_action(data) {
 						let filedata = $('#upload_mac')[0].files[0];
-						if (!filedata || (filedata && !filedata.name && filedata.type != 'mac')) {
+						if (!filedata || (filedata && !filedata.name)) {
 							frappe.throw(__("Upload a .mac file"));
 						} 
 						else {							

@@ -30,7 +30,7 @@ frappe.listview_settings['MAC File'] = {
 									},
 									callback: function (r) {										
 										if (r.message) {
-											me.upload_and_attach_macfile(r, list_view.doctype, filedata)
+											me.upload_and_attach_macfile(r.message, list_view.doctype, filedata)
 											frappe.show_alert({
 												message: __("Mac file Processed ... : ",r.message),
 												indicator: 'blue'

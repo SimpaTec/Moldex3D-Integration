@@ -30,7 +30,7 @@ frappe.listview_settings['MAC File'] = {
 									},
 									callback: function (r) {										
 										if (r.message) {
-											me.upload_and_attach_macfile(r.message, list_view.doctype, filedata)
+											me.upload_and_attach_macfile(list_view.doctype, r.message, filedata)
 											frappe.show_alert({
 												message: __("Mac file Processed ... : ",r.message),
 												indicator: 'blue'
@@ -58,7 +58,6 @@ frappe.listview_settings['MAC File'] = {
 
 	},
 
-	// upload_and_attach_macfile: function (r, macfiledata, list_view) {
 	upload_and_attach_macfile: function (doctype, docname, macfiledata) {
 		let macfile = new FormData();
 
